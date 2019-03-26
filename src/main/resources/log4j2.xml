@@ -14,10 +14,6 @@
 
     <!--定义参数属性-->
     <Properties>
-        <!--应用名-->
-        <Property name="com.cmdb.appname" value="chain"/>
-        <!--集群名-->
-        <Property name="com.cmdb.clustername" value="chain-test"/>
         <!--根日志等级-->
         <Property name="root.level" value="info"/>
 
@@ -147,32 +143,6 @@
             <!--<AppenderRef ref="Console"/>-->
         </AsyncRoot>
 
-        <!--过滤指定的类-->
-        <AsyncLogger name="com.netease.bde.domain.manage.kafka.MonitorManager" level="${root.level}"  additivity="false">
-            <AppenderRef ref="schedule"  />
-            <AppenderRef ref="mlog_error"/>
-            <!--<AppenderRef ref="Console"/>-->
-        </AsyncLogger>
-
-        <!--健康检查过滤-->
-        <AsyncLogger name="com.netease.bde.util.health.HealthLogUtil" level="${root.level}" additivity="false">
-            <AppenderRef ref="health"  />
-            <AppenderRef ref="mlog_error"/>
-            <!--<AppenderRef ref="Console"/>-->
-        </AsyncLogger>
-        <!-- 配置异步 userAction logger  -->
-
-        <!--同步方式，root只能由1个-->
-        <!--<root level="all">-->
-        <!--<appender-ref ref="Console"/>-->
-        <!--<appender-ref ref="mlog"/>-->
-        <!--<appender-ref ref="mlog_error"/>-->
-        <!--</root>-->
-
-        <!--Logger节点用来单独指定日志的形式，比如要为指定包下的class指定不同的日志级别等。
-        level:日志输出级别，共有8个级别，按照从低到高为：All < Trace < Debug < Info < Warn < Error < Fatal < OFF.
-        name:用来指定该Logger所适用的类或者类所在的包全路径,继承自Root节点.
-        AppenderRef：Logger的子节点，用来指定该日志输出到哪个Appender,如果没有指定，就会默认继承自Root.如果指定了，那么会在指定的这个Appender和Root的Appender中都会输出，此时我们可以设置Logger的additivity="false"只在自定义的Appender中进行输出。-->
         <Logger level="info" name="org.springframework"/>
     </Loggers>
 </Configuration>
