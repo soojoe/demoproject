@@ -1,4 +1,4 @@
-package soo.joe.demo.algorithm;
+package soo.joe.demo.algorithm.sort;
 
 import java.util.Arrays;
 
