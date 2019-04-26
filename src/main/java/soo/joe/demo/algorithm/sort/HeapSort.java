@@ -1,7 +1,5 @@
 package soo.joe.demo.algorithm.sort;
 
-import java.util.Arrays;
-
 /**
  * @author: suzhou
  * @createtime: 2019-03-26 15:11
@@ -28,6 +26,35 @@ public class HeapSort {
             heap(arr,0,i-1);
         }
         return arr;
+    }
+
+    public static double findMedianSortedArrays(int[] nums1,int[] nums2){
+        int totalNum=nums1.length+nums2.length;
+        int[] nums=new int[totalNum];
+        System.arraycopy(nums1,0,nums,0,nums1.length);
+        System.arraycopy(nums2,0,nums,nums1.length,nums2.length);
+        //奇数标识
+        boolean odd=true;
+        double result=0.00;
+        if(totalNum%2==0){
+            odd=false;
+        }
+        for(int i=(nums.length-2)/2;i>=0;i--){
+            heap(nums,i,nums.length-1);
+        }
+        for(int i=0;i<=nums.length/2;i++){
+            if(i==(nums.length/2-1)){
+                result=nums[0];
+                if(!odd){
+                    nums[0]=nums[nums.length-1-i];
+                    heap(nums,0,nums.length-2-i);
+                    result=(result+nums[0])/2;
+                }
+            }
+            nums[0]=nums[nums.length-1-i];
+            heap(nums,0,nums.length-2-i);
+        }
+        return result;
     }
 
     /**
@@ -72,8 +99,12 @@ public class HeapSort {
     }
 
     public static void main(String[] args) {
-        int[] arr=new int[]{1,5,2,3,7};
-        heapSort(arr);
-        System.out.println(Arrays.toString(arr));
+//        int[] arr=new int[]{1,5,2,3,7};
+//        heapSort(arr);
+//        System.out.println(Arrays.toString(arr));
+
+        int[] arr1=new int[]{1,2};
+        int[] arr2=new int[]{3,4};
+        System.out.println(findMedianSortedArrays(arr1,arr2));
     }
 }

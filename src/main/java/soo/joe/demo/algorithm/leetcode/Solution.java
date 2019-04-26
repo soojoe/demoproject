@@ -55,17 +55,39 @@ public class Solution {
         return result;
     }
 
+    public static int lengthOfLongestSubstring(String s) {
+        int max=0;
+        String tmp="";
+        for(int i=0;i<s.length();i++){
+            int index=tmp.indexOf(s.charAt(i)+"");
+            if(index>-1){
+                if(tmp.length()>max){
+                    max=tmp.length();
+                }
+                if(index+1>=tmp.length()){
+                    tmp="";
+                }else {
+                    tmp=tmp.substring(index+1,tmp.length());
+                }
 
+            }
+            tmp=tmp.concat(s.charAt(i)+"");
+        }
+        max=tmp.length()>max? tmp.length():max;
+        return max;
+    }
 
     public static void main(String[] args) {
-        ListNode q=new ListNode(1);
-        ListNode b=new ListNode(2);
-        ListNode s=new ListNode(4);
-        ListNode g=new ListNode(3);
-        q.next=b;
-        b.next=s;
-        s.next=g;
-        addTwoNumbers(q,b);
+//        ListNode q=new ListNode(1);
+//        ListNode b=new ListNode(2);
+//        ListNode s=new ListNode(4);
+//        ListNode g=new ListNode(3);
+//        q.next=b;
+//        b.next=s;
+//        s.next=g;
+//        addTwoNumbers(q,b);
+
+        System.out.println(lengthOfLongestSubstring("dvdf"));
     }
 }
 
